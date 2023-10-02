@@ -1,38 +1,29 @@
-node
-{
- 
-  stage("CheckOutCodeGit")
-  {
-   git credentialsId: 'git-login', url: 'https://github.com/fwoma/nodejs-app-mss.git'
- }
- 
- stage("Build")
- {
- nodejs(nodeJSInstallationName: 'nodejs10.19.0') {
+node {
+    stage("CheckOutCodeGit") {
+        git credentialsId: 'git-login', url: 'https://github.com/fwoma/nodejs-app-mss.git'
+    }
+
+    stage("Build") {
+        // Specify the Node.js installation name in 'tool' to match your configured installation
+        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm install'
     }
- }  
- 
-  stage('ExecuteSonarQubeReport') {
-     nodejs(nodeJSInstallationName: 'nodejs10.19.0') {
+
+    stage('ExecuteSonarQubeReport') {
+        // Specify the Node.js installation name in 'tool' to match your configured installation
+        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm run sonar'
     }
-      
-        } 
-		
+
     stage('UploadintoNexus') {
-       nodejs(nodeJSInstallationName: 'nodejs10.19.0') {
-          sh 'npm publish'
-      }
-      
-          }	
- 
- stage('RunNodeJsApp')
- {
- //sh "./scripts/run.sh"
- nodejs(nodeJSInstallationName: 'nodejs10.19.0') {
+        // Specify the Node.js installation name in 'tool' to match your configured installation
+        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        sh 'npm publish'
+    }
+
+    stage('RunNodeJsApp') {
+        // Specify the Node.js installation name in 'tool' to match your configured installation
+        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm start &'
     }
-}    
-    
 }
