@@ -5,25 +5,25 @@ node {
 
     stage("Build") {
         // Specify the Node.js installation name in 'tool' to match your configured installation
-        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        tool name: 'nodejs20.8.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm install'
     }
 
     stage('ExecuteSonarQubeReport') {
         // Specify the Node.js installation name in 'tool' to match your configured installation
-        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        tool name: 'nodejs20.8.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm run sonar'
     }
 
     stage('UploadintoNexus') {
         // Specify the Node.js installation name in 'tool' to match your configured installation
-        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        tool name: 'nodejs20.8.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm publish'
     }
 
     stage('RunNodeJsApp') {
         // Specify the Node.js installation name in 'tool' to match your configured installation
-        tool name: 'nodejs10.19.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        tool name: 'nodejs20.8.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         sh 'npm start &'
     }
 }
