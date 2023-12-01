@@ -4,7 +4,7 @@
   "description": "This Project explains all Node JS examples",
   "main": "app.js",
   "publishConfig": {
-    "registry": "http://localhost:9000/mithuntechnologies/repository/trailing/"
+    "registry": "http://172.31.17.155:8081/repository/NodeJSApplication/"
   },
   
   "scripts": {
