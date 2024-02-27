@@ -21,8 +21,8 @@ sh "npm run sonar"
 }
 
 //stage('UploadArtifcatsintoNexus')
-{
-sh "npm publish"
+//{
+//sh "npm publish"
 //}
 
 stage('RunNodeJsApp')
